@@ -1,8 +1,9 @@
 class SongsController < ApplicationController
   def index
-    @songs = Song.all
+    @artist = Artist.find(params[:artist_id])
+    @songs = @artist.songs
     respond_to do |format|
-      format.html { render :index }
+      format.html { render json: @songs }
       format.json { render json: @songs }
     end
   end
